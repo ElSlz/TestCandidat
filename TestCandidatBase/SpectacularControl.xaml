@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="TestCandidat.SpectacularControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TestCandidat"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Message: "/>
+        <TextBox Grid.Column="1"  Text="{Binding Text}" Margin="10" />
+        <Slider Grid.Row="1" Grid.Column="1" x:Name="msToWaitSlider" Minimum="150" Maximum="20000" Value="{Binding MilliSeconds}" Margin="10" VerticalAlignment="Center"/>      
+        <TextBlock Grid.Column="0"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Run Text="Time to run:"/>
+            <Run Text="{Binding MilliSeconds, StringFormat=0000}"/>
+            <Run Text="ms"/>
+        </TextBlock>
+        <Slider Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Minimum="25" Maximum="1000" Value="{Binding RefreshDelayInMilliseconds}" Margin="10" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Run Text="Refresh delay:"/>
+            <Run Text="{Binding RefreshDelayInMilliseconds, StringFormat=0000}"/>
+            <Run Text="ms"/>
+        </TextBlock>
+        <ProgressBar Grid.Column="1"  Grid.Row="3" Height="20" Margin="10" Minimum="0" Maximum="1" Value="{Binding ExecutionRatio, Mode=OneWay}"/>
+        <Grid Grid.Row="3" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0"  Content="Go!" Command="{Binding Execute}"/>
+            <Button Grid.Row="1"  Content="Stop" Command="{Binding StopExecution}"/>
+        </Grid>
+        
+    </Grid>
+</UserControl>
